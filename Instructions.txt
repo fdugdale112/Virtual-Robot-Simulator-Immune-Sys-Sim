@@ -1,0 +1,22 @@
+Instructions
+
+-------------------------------------------------------
+
+Controls:
+
+'A' button turns the player's robot anticlockwise, 
+'D' button turns the player's robot clockwise, 
+'W' button speeds up the robot, 
+'S' button slows down the robot,
+'Space' button changes the shape of the players robot.
+
+--------
+
+Aim:
+
+The aim of the game is to pick up points by colliding with the moving shapes in the arena whilst you 
+are the same shape. You score 1 point for catching a triangle, 2 points for a circle and 3 points 
+for a square. You have won the game when 20 points or more have been scored.
+
+--------
+
