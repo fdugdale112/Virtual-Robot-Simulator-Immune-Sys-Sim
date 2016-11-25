@@ -1,0 +1,107 @@
+'''
+immune system simulator
+simulates how the immune system interacts with foreign bodys
+created with Tkinter
+author: William Escobar Parra, Tim Goldsmith, Mathew Glaysher and Freddie Dugdale
+'''
+import turtle
+#import tkinter
+import tkinter.messagebox
+import random
+import threading
+import math
+import os
+import webbrowser
+from tkinter import *
+    
+#turtle speed  value is set 
+turtleSpeed=1
+
+
+    
+#Set up screen/ window 
+window = turtle.Screen()
+window.bgcolor("black")
+window.tracer(2) #this will skip frames, allowing program to run slightly faster
+
+# here the turtle is created
+user= turtle.Turtle()
+user.shape('triangle')
+user.color('red')
+user.speed=0
+user.penup()
+
+
+def changeShape():
+    #tried to make the user turtle cycle through shapes by pressing space, it changes once but never again
+    if user.shape() =="circle":
+        user.shape("square")
+            
+    elif user.shape()=="triangle":
+        user.shape("circle")
+           
+    elif user.shape()=="square":
+        user.shape("triangle")
+            
+    #keyboard bindings
+    turtle.onkey(changeShape,"space")
+    turtle.listen()
+
+    #cloning multiple turtles 
+    maxPathogens=20
+    turtles=[]
+
+
+    for count in range(maxPathogens):
+        
+        #pathogen creation
+        turtles.append(turtle.Turtle())    
+        turtles[count].speed(0)
+        turtles[count].penup()
+        turtles[count].setposition(random.randint(-350,350),random.randint(-350,350))
+        turtles[count].color("purple")
+        turtles[count].shape("triangle")
+
+       
+#attempted to get the user turtle to bouce off the boundary realistically
+# user.heading()
+            
+#user.right(360 - user.heading())
+#print(user.heading())
+
+#allows the movement of multiple pathogens/turtles
+            
+            
+for count in range (maxPathogens):
+    turtles[count].forward(2)
+                
+#setting up x,y coordinates for boundary checking
+    if turtles[count].xcor()>350 or turtles[count].xcor()<-350:
+        turtles[count].right(180)
+                    
+    #boundary checking the y coordinates
+    if turtles[count].ycor()>350 or turtles[count].ycor()<-350:
+        turtles[count].right(180)
+
+
+#if collision occurs, this will take turtle to a random spot
+    if collisionCheck(user,turtles[count]):
+        if (user.shape() == turtles[count].shape())==True:
+                    
+            turtles[count].setposition(random.randint(-350,350),random.randint(-350,350))
+            turtles[count].right(random.randint(0,360))
+            if turtles[count].shape()=="circle":
+                turtles[count].shape("square")
+                turtles[count].color("blue")
+               
+            elif turtles[count].shape()=="triangle":
+                turtles[count].shape("circle")
+                turtles[count].color("yellow")
+                
+            elif turtles[count].shape()=="square":
+                turtles[count].shape("triangle")
+                turtles[count].color("purple")
+    
+                
+
+
